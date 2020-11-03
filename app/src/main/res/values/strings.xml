@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">MeteorWatcher</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="strAppName">MeteorWatcher</string>
+    <string name="strProfile">Profile</string>
+    <string name="strSchemes">Schemes</string>
+    <string name="strSync">Sync</string>
+    <string name="strServerStatus">Server Status</string>
+    <string name="strPlaceholder">placeholder</string>
+    <string name="strFetch">Fetch Schemes</string>
+    <string name="strOnline">Online</string>
+    <string name="strOffline">Offline</string>
+    <string name="strNetworkStatus">Network satus:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

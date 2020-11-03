@@ -1,10 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="telapo.meteorwatcher.MainActivity">
+    tools:context="telapo.meteorwatcher.modules.main.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/miProfile"
+        android:title="@string/strProfile" />
+    <item
+        android:id="@+id/miSchemes"
+        android:title="@string/strSchemes" />
+    <item
+        android:id="@+id/miSync"
+        android:title="@string/strSync" />
+    <item
+        android:id="@+id/miServerStatus"
+        android:title="@string/strServerStatus" />
 </menu>
