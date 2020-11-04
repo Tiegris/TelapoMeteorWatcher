@@ -14,6 +14,7 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.NetworkingInterface
+import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.utility.Formater
 import telapo.meteorwatcher.utility.Sensors
 
@@ -23,7 +24,7 @@ class NewObservationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_observation)
-
+        Profile.Update(this)
     }
 
     override fun onStart() {
@@ -45,7 +46,7 @@ class NewObservationActivity : AppCompatActivity() {
                 PERMISSION_REQUEST_CODE)
         }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        var locationTask = fusedLocationClient.lastLocation
+        val locationTask = fusedLocationClient.lastLocation
 
         locationTask?.addOnSuccessListener { location : Location? ->
             if (location != null) {
@@ -59,6 +60,9 @@ class NewObservationActivity : AppCompatActivity() {
 
         tvTimeLocal.text = Formater.GetDateTime(Sensors.Time.Local)
         tvTimeUtc.text = Formater.GetDateTime(Sensors.Time.Utc)
+
+        tvProfileName.text = Profile.Name
+        tvProfileAddress.text = Profile.AddressCity
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

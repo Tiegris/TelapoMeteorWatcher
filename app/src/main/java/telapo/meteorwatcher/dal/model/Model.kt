@@ -1,4 +1,4 @@
-package telapo.meteorwatcher.dal.data
+package telapo.meteorwatcher.dal.model
 
 import java.time.LocalDateTime
 
