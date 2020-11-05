@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.NetworkingInterface
+import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.modules.newobservation.NewObservationActivity
+import telapo.meteorwatcher.modules.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        Profile.Initialise(this)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { _ ->
             startActivity(Intent(this, NewObservationActivity::class.java))
@@ -32,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miProfile -> {
-                //TODO: Show Profile Settings
+                ProfileFragment().show(supportFragmentManager, ProfileFragment::class.java.simpleName)
                 return true
             }
             R.id.miSchemes -> {

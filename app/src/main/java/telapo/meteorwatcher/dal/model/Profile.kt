@@ -1,22 +1,36 @@
 package telapo.meteorwatcher.dal.model
 
-import android.app.Activity
 import android.content.Context
 
-object Profile {
-    var Name : String = "Your name"
-    var AddressCity: String = "Your address"
+data class ProfileSnapshot(val Name: String, val AddressCity: String)
 
-    fun Commit(o: Activity) {
-        val sp = o.getSharedPreferences("shpPrifle", Context.MODE_PRIVATE).edit()
-        sp.putString("name", Name)
-        sp.putString("addr", AddressCity)
-        sp.apply()
+object Profile {
+    var Name : String = ""
+    var AddressCity: String = ""
+    var o : Context? = null
+    var initialised : Boolean = false
+
+    fun CreateSnapshot() = ProfileSnapshot(Name, AddressCity)
+
+
+    fun Initialise(o: Context) {
+        this.o = o
+        if (!initialised) {
+            load()
+            initialised = true;
+        }
     }
 
-    fun Update(o : Activity) {
-        val pref = o.getSharedPreferences("shpPrifle", Context.MODE_PRIVATE)
-        Name = pref.getString("name", "name not set").toString()
-        AddressCity = pref.getString("addr", "address not set").toString()
+    fun Commit() {
+        val sp = o?.getSharedPreferences("shpPrifle", Context.MODE_PRIVATE)?.edit()
+        sp?.putString("name", Name)
+        sp?.putString("addr", AddressCity)
+        sp?.apply()
+    }
+
+    private fun load() {
+        val pref = o?.getSharedPreferences("shpPrifle", Context.MODE_PRIVATE)
+        Name = pref?.getString("name", "").toString()
+        AddressCity = pref?.getString("addr", "").toString()
     }
 }

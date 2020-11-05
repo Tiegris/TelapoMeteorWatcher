@@ -6,6 +6,8 @@ import android.location.Location
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -14,17 +16,91 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.NetworkingInterface
-import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.dal.model.*
+import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.utility.Formater
 import telapo.meteorwatcher.utility.Sensors
+import java.util.*
 
 class NewObservationActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private var loc: Location? = null
+    private lateinit var dt: Calendar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_observation)
-        Profile.Update(this)
+        Profile.Initialise(this)
+        inpOfficialStart.setIs24HourView(true)
+
+        val spinner: Spinner = findViewById(R.id.inpSchemes)
+
+        ArrayAdapter(this, android.R.layout.simple_spinner_item, schemeProvider.GetList()
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        val spinner2: Spinner = findViewById(R.id.inpPeriodTime)
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.saPeriods,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner2.adapter = adapter
+        }
+
+        btnStart.setOnClickListener {
+            startClicked()
+         }
+
+    }
+
+    private fun validateStartTime() : Boolean {
+        val local = dt.get(Calendar.HOUR_OF_DAY)*60 + dt.get(Calendar.MINUTE)
+        val official = inpOfficialStart.hour*60 + inpOfficialStart.minute
+
+        if (Math.abs(local-official) <= 30) {
+            dt.add(Calendar.MINUTE, official-local)
+            return true
+        }
+        if (Math.abs(local-(official+24*60)) <= 30) {
+            dt.add(Calendar.MINUTE, (official+24*60)-local)
+            return true
+        }
+        return false
+    }
+
+
+    private val schemeProvider : SchemeProvider = SampleSchemeProvider()
+    private fun getScheme(): Scheme{
+        return schemeProvider.GetScheme(inpSchemes.selectedItemPosition)
+    }
+
+    private fun startClicked() {
+        if (validateStartTime()) {
+            val o = Observation(
+                listOf<Comment>(),
+                Profile.CreateSnapshot(),
+                loc,
+                dt.clone() as Calendar,
+                (inpPeriodTime.selectedItemPosition+1)*15,
+                getScheme()
+            )
+
+            Toast.makeText(this,
+                dt.time.toString(),
+                Toast.LENGTH_SHORT).show()
+
+            Observation.Activate(o)
+        } else {
+            Toast.makeText(this,
+                "Difference between local time and official start time can not be greater than 30 minutes.",
+                Toast.LENGTH_LONG).show()
+            return
+        }
     }
 
     override fun onStart() {
@@ -50,6 +126,7 @@ class NewObservationActivity : AppCompatActivity() {
 
         locationTask?.addOnSuccessListener { location : Location? ->
             if (location != null) {
+                loc = location
                 tvLocationLongitude.text = location.longitude.toString()
                 tvLocationLatitude.text = location.latitude.toString()
             } else {
@@ -58,7 +135,9 @@ class NewObservationActivity : AppCompatActivity() {
             }
         }
 
-        tvTimeLocal.text = Formater.GetDateTime(Sensors.Time.Local)
+
+        dt = Sensors.Time.Local
+        tvTimeLocal.text = Formater.GetDateTime(dt)
         tvTimeUtc.text = Formater.GetDateTime(Sensors.Time.Utc)
 
         tvProfileName.text = Profile.Name
@@ -77,7 +156,7 @@ class NewObservationActivity : AppCompatActivity() {
                 return true
             }
             R.id.miProfile -> {
-                //TODO: Show Profile Settings
+                ProfileFragment().show(supportFragmentManager, ProfileFragment::class.java.simpleName)
                 return true
             }
             R.id.miSchemes -> {
