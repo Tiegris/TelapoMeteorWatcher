@@ -1,6 +1,7 @@
 package telapo.meteorwatcher.modules.newobservation
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -16,8 +17,15 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.NetworkingInterface
-import telapo.meteorwatcher.dal.model.*
+import telapo.meteorwatcher.dal.model.Comment
+import telapo.meteorwatcher.dal.model.Observation
+import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.dal.model.scheme.SampleSchemeProvider
+import telapo.meteorwatcher.dal.model.scheme.Scheme
+import telapo.meteorwatcher.dal.model.scheme.SchemeProvider
+import telapo.meteorwatcher.modules.liveobservation.ObservationActivity
 import telapo.meteorwatcher.modules.profile.ProfileFragment
+import telapo.meteorwatcher.modules.schemes.SchemesActivity
 import telapo.meteorwatcher.utility.Formater
 import telapo.meteorwatcher.utility.Sensors
 import java.util.*
@@ -75,7 +83,7 @@ class NewObservationActivity : AppCompatActivity() {
 
 
     private val schemeProvider : SchemeProvider = SampleSchemeProvider()
-    private fun getScheme(): Scheme{
+    private fun getScheme(): Scheme {
         return schemeProvider.GetScheme(inpSchemes.selectedItemPosition)
     }
 
@@ -95,6 +103,7 @@ class NewObservationActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
 
             Observation.Activate(o)
+            startActivity(Intent(this, ObservationActivity::class.java))
         } else {
             Toast.makeText(this,
                 "Difference between local time and official start time can not be greater than 30 minutes.",
@@ -160,7 +169,7 @@ class NewObservationActivity : AppCompatActivity() {
                 return true
             }
             R.id.miSchemes -> {
-                //TODO: Show Schemes
+                startActivity(Intent(this, SchemesActivity::class.java))
                 return true
             }
             R.id.miFetch -> {

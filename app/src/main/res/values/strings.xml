@@ -15,5 +15,11 @@
     <string name="strRefresh">Refresh</string>
     <string name="strOk">Ok</string>
     <string name="strCancel">Cancel</string>
+    <string name="strQuit">Quit</string>
+    <string name="strComment">Comment</string>
+    <string name="strCyclePeriod">Cycle period</string>
+    <string name="strPause">Pause</string>
+    <string name="strHmg">HMG</string>
+    <string name="strUndo">Undo</string>
 
 </resources>

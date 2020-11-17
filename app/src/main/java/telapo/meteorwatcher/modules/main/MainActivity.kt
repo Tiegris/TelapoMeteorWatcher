@@ -12,6 +12,7 @@ import telapo.meteorwatcher.dal.NetworkingInterface
 import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.modules.newobservation.NewObservationActivity
 import telapo.meteorwatcher.modules.profile.ProfileFragment
+import telapo.meteorwatcher.modules.schemes.SchemesActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.miSchemes -> {
-                //TODO: Show Schemes
+                startActivity(Intent(this, SchemesActivity::class.java))
                 return true
             }
             R.id.miFetch -> {
