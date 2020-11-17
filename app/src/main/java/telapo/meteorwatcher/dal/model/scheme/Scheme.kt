@@ -5,9 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-
-
-
 interface SchemeProvider {
     fun GetScheme(i : Int) : Scheme
     fun GetList() : List<Scheme>
@@ -42,6 +39,7 @@ data class Scheme(
     @ColumnInfo(name = "swarm6") var Swarm6 : String,
     ) {
 
-
-
+    override fun toString(): String {
+        return Name
+    }
 }

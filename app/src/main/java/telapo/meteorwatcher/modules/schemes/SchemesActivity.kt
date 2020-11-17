@@ -37,7 +37,7 @@ class SchemesActivity : AppCompatActivity() {
                 Scheme(1,"Orionids",1, "","","","","","")
             )
             runOnUiThread {
-                adapter.update(items)
+                adapter.Update(items)
             }
         }
     }

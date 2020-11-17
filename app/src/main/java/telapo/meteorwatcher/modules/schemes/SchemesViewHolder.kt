@@ -11,6 +11,6 @@ class SchemesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     init {
         tvName = itemView.findViewById(R.id.tvSchemeName)
-        tvVersion = itemView.findViewById(  R.id.tvSchemeVer)
+        tvVersion = itemView.findViewById(  R.id.tvObservationCounter)
     }
 }

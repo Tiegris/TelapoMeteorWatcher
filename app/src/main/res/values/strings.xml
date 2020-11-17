@@ -21,5 +21,6 @@
     <string name="strPause">Pause</string>
     <string name="strHmg">HMG</string>
     <string name="strUndo">Undo</string>
+    <string name="strCount">Count:</string>
 
 </resources>
