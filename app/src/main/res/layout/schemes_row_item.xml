@@ -11,7 +11,8 @@
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
-    android:background="@drawable/bordered_ligh_block">
+    android:background="@drawable/bordered_ligh_block"
+    android:theme="@style/AppTheme">
 
     <TextView
         android:textSize="28sp"

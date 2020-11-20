@@ -17,7 +17,6 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.NetworkingInterface
-import telapo.meteorwatcher.dal.model.Comment
 import telapo.meteorwatcher.dal.model.Observation
 import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.dal.model.scheme.SampleSchemeProvider
@@ -90,7 +89,7 @@ class NewObservationActivity : AppCompatActivity() {
     private fun startClicked() {
         if (validateStartTime()) {
             val o = Observation(
-                listOf<Comment>(),
+                mutableListOf(),
                 Profile.CreateSnapshot(),
                 loc,
                 dt.clone() as Calendar,
@@ -98,12 +97,9 @@ class NewObservationActivity : AppCompatActivity() {
                 getScheme()
             )
 
-            Toast.makeText(this,
-                dt.time.toString(),
-                Toast.LENGTH_SHORT).show()
-
             Observation.Activate(o)
-            startActivity(Intent(this, ObservationActivity::class.java))
+            val intent = Intent(this, ObservationActivity::class.java)
+            startActivity(intent)
         } else {
             Toast.makeText(this,
                 "Difference between local time and official start time can not be greater than 30 minutes.",

@@ -11,13 +11,13 @@ data class SwarmResults(
 }
 
 data class Observation(
-    val Comments : List<Comment>,
+    val Comments : MutableList<Comment>,
     val UsedProfile: ProfileSnapshot,
     val Gps: Location?,
     val OfficialStart : Calendar,
     var PeriodTime : Int,
-    val Scheme: Scheme) {
-
+    val Scheme: Scheme)
+{
     companion object {
         var ActiveObservation : Observation? = null
         fun Activate(o : Observation) {
