@@ -12,7 +12,7 @@ interface SchemeProvider {
 
 class SampleSchemeProvider : SchemeProvider{
     private var list = listOf<Scheme>(
-        Scheme(0,"PerseidaMax",1, "Per","","","","",""),
+        Scheme(0,"PerseidaMax",1, "Per","Bar","Asd","Foo","Baz","Gar"),
         Scheme(1,"Orionids",1, "","","","","","")
     )
 

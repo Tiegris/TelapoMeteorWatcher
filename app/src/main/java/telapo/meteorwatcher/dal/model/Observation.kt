@@ -8,7 +8,8 @@ import java.util.*
 data class Cycle(
     val Id: Int,
     val Swarms: MutableList<SwarmResults>,
-    var Hmg: Int
+    var Hmg: Int,
+    var Lm: Int
 ) {
 
 }
@@ -71,8 +72,10 @@ data class Observation(
 
 
     fun GetCycleDuration(): String {
+        val c = if (Cycles.size == 0) 0 else Cycles.size-1
+
         val copy = OfficialStart.clone() as Calendar
-        copy.add(Calendar.MINUTE, PeriodTime * (Cycles.size))
+        copy.add(Calendar.MINUTE, PeriodTime * (c))
 
         val from = Formater.GetTime(copy)
         copy.add(Calendar.MINUTE, PeriodTime)
@@ -80,7 +83,7 @@ data class Observation(
         return "$from - $to"
     }
 
-    fun NewCycle(hmg : Int) {
+    fun NewCycle(hmg : Int, lm: Int) {
         val count = Cycles.size
         val list = mutableListOf<SwarmResults>()
         if (!Scheme.Swarm1.equals("")) list.add(SwarmResults(Scheme.Swarm1))
@@ -91,7 +94,7 @@ data class Observation(
         if (!Scheme.Swarm6.equals("")) list.add(SwarmResults(Scheme.Swarm6))
         list.add(SwarmResults("Spo"))
 
-        Cycles.add(Cycle(count, list, hmg))
+        Cycles.add(Cycle(count, list, hmg, lm))
     }
 
     fun AddMeteor(mg: Int, name: String) {

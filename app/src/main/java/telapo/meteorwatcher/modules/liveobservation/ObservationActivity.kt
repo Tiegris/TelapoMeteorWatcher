@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.activity_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Comment
 import telapo.meteorwatcher.dal.model.Observation
-import telapo.meteorwatcher.dal.model.scheme.SampleSchemeProvider
-import kotlin.concurrent.thread
 
 
 class ObservationActivity : AppCompatActivity(), ICommentable {
@@ -37,25 +35,16 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
 
     override fun onStart() {
         super.onStart()
-
+        tvCycle.text = Observation.ActiveObservation?.GetCycleDuration()
     }
 
     private fun initRecyclerView() {
         recyclerView = ObservationRecyclerView
         adapter = ObservationAdapter(this)
-        loadItemsInBackground()
+        val item = Observation.ActiveObservation!!.Scheme
+        adapter.Set(item)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-    }
-
-    private fun loadItemsInBackground() {
-        thread {
-            //val items = database.shoppingItemDao().getAll()
-            val item = SampleSchemeProvider().GetScheme(0)
-            runOnUiThread {
-                adapter.Set(item)
-            }
-        }
     }
 
     override fun onBackPressed() {
@@ -75,8 +64,8 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
             }
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(this,  R.style.AlertDialogStyle)
-        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-            .setNegativeButton("No", dialogClickListener).show()
+        builder.setMessage("Are you sure you want to exit and terminate Observation?").setPositiveButton("Yes", dialogClickListener)
+            .setNegativeButton("Cancel", dialogClickListener).show()
     }
 
     override fun AddComment(c: Comment) {
@@ -102,6 +91,7 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
                     supportFragmentManager,
                     HmgFragment::class.java.simpleName
                 )
+                tvCycle.text = Observation.ActiveObservation?.GetCycleDuration()
                 return true
             }
 
