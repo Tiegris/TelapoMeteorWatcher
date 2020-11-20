@@ -1,14 +1,16 @@
 package telapo.meteorwatcher.modules.liveobservation
 
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import telapo.meteorwatcher.R
 
 class ObservationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    //val tvSwarm: TextView
-    //val b0: TextView
+    val tvSwarmName: TextView
+
 
     init {
-        //tvName = itemView.findViewById(R.id.tvSchemeName)
+        tvSwarmName = itemView.findViewById(R.id.tvObservationSwarmName)
         //tvVersion = itemView.findViewById(  R.id.tvSchemeVer)
     }
 }

@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.liveobservation.ObservationActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".modules.liveobservation.ObservationActivity"
+    android:background="@color/colorBackground">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ObservationRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/observation_row_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

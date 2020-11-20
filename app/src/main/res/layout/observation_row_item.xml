@@ -5,22 +5,27 @@
     android:layout_height="100dp"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp">
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bordered_ligh_block">
 
     <TextView
-        android:textSize="28sp"
         android:id="@+id/tvObservationSwarmName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/strPlaceholder"
+        android:textColor="@color/colorText"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/colorText"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,11 +35,12 @@
         app:layout_constraintStart_toStartOf="@+id/tvObservationSwarmName" />
 
     <TextView
+        android:textColor="@color/colorText"
         android:id="@+id/tvObservationCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/strPlaceholder"
+        android:text="500"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
@@ -43,16 +49,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/bordered_dark_block"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        android:paddingRight="4dp">
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
 
             <Button
                 android:id="@+id/btnSmall_0"
@@ -87,9 +95,10 @@
         </TableRow>
 
         <TableRow
-            android:gravity="end"
+            android:paddingBottom="4dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="end">
 
             <Button
                 android:id="@+id/btnSmall_m1"

@@ -13,6 +13,7 @@ import telapo.meteorwatcher.dal.model.Profile
 
 class ProfileFragment : AppCompatDialogFragment() {
     private var name: EditText? = null
+    private var email: EditText? = null
     private var addr: EditText? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -22,6 +23,7 @@ class ProfileFragment : AppCompatDialogFragment() {
             .setPositiveButton(R.string.strOk) { _, _ ->
                run {
                     Profile.Name = name?.text.toString()
+                    Profile.Email = email?.text.toString()
                     Profile.AddressCity = addr?.text.toString()
                     Profile.Commit()
                 }
@@ -34,8 +36,10 @@ class ProfileFragment : AppCompatDialogFragment() {
         get() {
             val view: View = LayoutInflater.from(context).inflate(R.layout.fragment_profile, null)
             name = view.findViewById(R.id.tbName)
+            email = view.findViewById(R.id.tbEmail)
             addr = view.findViewById(R.id.tbAddress)
             name?.setText(Profile.Name)
+            email?.setText(Profile.Email)
             addr?.setText(Profile.AddressCity)
 
             return view

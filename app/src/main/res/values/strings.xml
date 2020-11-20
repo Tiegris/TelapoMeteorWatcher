@@ -9,7 +9,7 @@
     <string name="strOnline">Online</string>
     <string name="strOffline">Offline</string>
     <string name="strNetworkStatus">Network satus:</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strNullData">NullData</string>
     <string name="strRefresh">Refresh</string>
@@ -22,5 +22,9 @@
     <string name="strHmg">HMG</string>
     <string name="strUndo">Undo</string>
     <string name="strCount">Count:</string>
+    <string name="strVersion">Version:</string>
+    <string name="strEmail">Email</string>
+    <string name="strName">Name</string>
+    <string name="strAddress">Address</string>
 
 </resources>

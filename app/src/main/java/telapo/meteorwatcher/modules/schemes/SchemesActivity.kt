@@ -22,7 +22,7 @@ class SchemesActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        recyclerView = MainRecyclerView
+        recyclerView = SchemeRecyclerView
         adapter = SchemesAdapter(this)
         loadItemsInBackground()
         recyclerView.layoutManager = LinearLayoutManager(this)

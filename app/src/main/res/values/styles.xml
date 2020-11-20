@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="titleTextColor">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,11 +19,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="SmallButtonStyle">
-        <item name="android:layout_width">20dp</item>
-        <item name="android:layout_height">20dp</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
         <item name="android:textColor">@color/colorDarkRed</item>
-        <item name="android:background">@drawable/bordered_button</item>
+        <item name="android:background">@drawable/bordered_ligh_block</item>
     </style>
 
 </resources>

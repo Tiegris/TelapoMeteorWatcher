@@ -10,14 +10,21 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/strName"
         android:id="@+id/tbName"
         />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Address"
+        android:hint="@string/strEmail"
+        android:id="@+id/tbEmail"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/strAddress"
         android:id="@+id/tbAddress"
         />
 
