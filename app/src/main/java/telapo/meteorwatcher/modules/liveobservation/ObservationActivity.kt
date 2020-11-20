@@ -1,8 +1,10 @@
 package telapo.meteorwatcher.modules.liveobservation
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +22,6 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
     private lateinit var adapter: ObservationAdapter
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_observation)
@@ -32,6 +33,11 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
         inflater.inflate(R.menu.menu_live_observation, menu)
         MenuCompat.setGroupDividerEnabled(menu, true)
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     private fun initRecyclerView() {
@@ -52,6 +58,27 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
         }
     }
 
+    override fun onBackPressed() {
+        exit()
+    }
+
+    private fun exit(){
+        val dialogClickListener =
+            DialogInterface.OnClickListener { dialog, which ->
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        this.finish()
+                    }
+                    DialogInterface.BUTTON_NEGATIVE -> {
+                    }
+                }
+            }
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this,  R.style.AlertDialogStyle)
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+            .setNegativeButton("No", dialogClickListener).show()
+    }
+
     override fun AddComment(c: Comment) {
         Observation.ActiveObservation?.Comments?.add(c)
     }
@@ -59,27 +86,22 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miQuit -> {
-
+                exit()
                 return true
             }
             R.id.miComment -> {
-                CommentFragment(this).show(supportFragmentManager, CommentFragment::class.java.simpleName)
+                CommentFragment(this).show(
+                    supportFragmentManager,
+                    CommentFragment::class.java.simpleName
+                )
                 return true
             }
-            R.id.miCyclePeriod -> {
 
-                return true
-            }
-            R.id.miPause -> {
-
-                return true
-            }
             R.id.miHmg -> {
-
-                return true
-            }
-            R.id.miUndo -> {
-
+                HmgFragment().show(
+                    supportFragmentManager,
+                    HmgFragment::class.java.simpleName
+                )
                 return true
             }
 

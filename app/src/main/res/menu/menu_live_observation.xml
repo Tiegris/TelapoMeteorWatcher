@@ -7,21 +7,12 @@
         <item
             android:id="@+id/miComment"
             android:title="@string/strComment" />
-        <item
-            android:id="@+id/miCyclePeriod"
-            android:title="@string/strCyclePeriod" />
     </group>
 
     <group android:id="@+id/group2">
         <item
-            android:id="@+id/miPause"
-            android:title="@string/strPause" />
-        <item
             android:id="@+id/miHmg"
             android:title="@string/strHmg" />
-        <item
-            android:id="@+id/miUndo"
-            android:title="@string/strUndo" />
     </group>
 
 </menu>

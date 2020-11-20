@@ -41,7 +41,6 @@ class CommentFragment(val o: ICommentable) : AppCompatDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-
         dialog?.window?.setBackgroundDrawableResource(R.color.colorBackground)
     }
 

@@ -22,7 +22,7 @@ import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.dal.model.scheme.SampleSchemeProvider
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.dal.model.scheme.SchemeProvider
-import telapo.meteorwatcher.modules.liveobservation.ObservationActivity
+import telapo.meteorwatcher.modules.liveobservation.HmgFragment
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
 import telapo.meteorwatcher.utility.Formater
@@ -98,8 +98,10 @@ class NewObservationActivity : AppCompatActivity() {
             )
 
             Observation.Activate(o)
-            val intent = Intent(this, ObservationActivity::class.java)
-            startActivity(intent)
+            HmgFragment(this,true).show(
+                supportFragmentManager,
+                HmgFragment::class.java.simpleName
+            )
         } else {
             Toast.makeText(this,
                 "Difference between local time and official start time can not be greater than 30 minutes.",

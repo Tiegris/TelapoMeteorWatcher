@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import telapo.meteorwatcher.R
+import telapo.meteorwatcher.dal.model.Observation
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 
 class ObservationAdapter(private val context: Context) :
@@ -38,7 +39,23 @@ class ObservationAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ObservationViewHolder, position: Int) {
         val item = items[position]
         holder.tvSwarmName.text = item
-        //holder.tvVersion.text = item.Version.toString()
+
+        holder.tvCount.text .let {
+            Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()
+        }
+        holder.btn_0.setOnClickListener { Observation.ActiveObservation?.AddMeteor(0, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString() }
+
+        holder.btn_1.setOnClickListener { Observation.ActiveObservation?.AddMeteor(1, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_2.setOnClickListener { Observation.ActiveObservation?.AddMeteor(2, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_3.setOnClickListener { Observation.ActiveObservation?.AddMeteor(3, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_4.setOnClickListener { Observation.ActiveObservation?.AddMeteor(4, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_5.setOnClickListener { Observation.ActiveObservation?.AddMeteor(5, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+
+        holder.btn_m1.setOnClickListener { Observation.ActiveObservation?.AddMeteor(-1, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_m2.setOnClickListener { Observation.ActiveObservation?.AddMeteor(-2, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_m3.setOnClickListener { Observation.ActiveObservation?.AddMeteor(-3, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_m4.setOnClickListener { Observation.ActiveObservation?.AddMeteor(-4, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
+        holder.btn_m5.setOnClickListener { Observation.ActiveObservation?.AddMeteor(-5, item); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
     }
 
     override fun getItemCount(): Int = items.size

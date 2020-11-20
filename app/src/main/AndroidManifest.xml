@@ -13,11 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.schemes.SchemesActivity"></activity>
-        <activity android:name=".modules.liveobservation.ObservationActivity" />
+
+        <activity
+            android:name=".modules.schemes.SchemesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".modules.liveobservation.ObservationActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".modules.newobservation.NewObservationActivity"
             android:screenOrientation="portrait" />
+        
         <activity
             android:name=".modules.main.MainActivity"
             android:label="@string/strAppName"
