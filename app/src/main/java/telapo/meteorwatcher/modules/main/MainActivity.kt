@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import telapo.meteorwatcher.R
-import telapo.meteorwatcher.dal.NetworkingInterface
 import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.modules.newobservation.NewObservationActivity
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, SchemesActivity::class.java))
                 return true
             }
-            R.id.miFetch -> {
-                NetworkingInterface.SyncObservations()
+            R.id.miSync -> {
+                NetworkManager.SyncObservations()
                 return true
             }
             R.id.miServerStatus -> {
-                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkingInterface.GetServerStatus()) { true->getString(
+                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkManager.GetServerStatus()) { true->getString(
                                     R.string.strOnline) false->getString(R.string.strOffline)}, Toast.LENGTH_SHORT).show()
                 return true
             }

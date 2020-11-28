@@ -1,12 +1,16 @@
 package telapo.meteorwatcher.modules.schemes
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_schemes.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.scheme.Scheme
+import telapo.meteorwatcher.dal.model.scheme.SchemeProvider
+import telapo.meteorwatcher.dal.network.NetworkManager
 import kotlin.concurrent.thread
 
 class SchemesActivity : AppCompatActivity() {
@@ -19,6 +23,25 @@ class SchemesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_schemes)
 
         initRecyclerView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_schemes, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.miDelete -> {
+                SchemeProvider().DeleteSchemes()
+                return true
+            }
+            R.id.miFetch -> {
+                NetworkManager.FetchSchemes()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initRecyclerView() {

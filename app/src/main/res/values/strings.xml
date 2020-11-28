@@ -26,5 +26,6 @@
     <string name="strEmail">Email</string>
     <string name="strName">Name</string>
     <string name="strAddress">Address</string>
+    <string name="strDeleteAll">Delete All</string>
 
 </resources>

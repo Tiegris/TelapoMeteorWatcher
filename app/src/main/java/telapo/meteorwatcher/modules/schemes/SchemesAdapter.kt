@@ -28,8 +28,8 @@ class SchemesAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: SchemesViewHolder, position: Int) {
         val item = items[position]
-        holder.tvName.text = item.Name
-        holder.tvVersion.text = item.Version.toString()
+        holder.tvName.text = item.name
+        holder.tvVersion.text = item.version.toString()
     }
 
     override fun getItemCount(): Int = items.size

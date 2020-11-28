@@ -16,12 +16,12 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
-import telapo.meteorwatcher.dal.NetworkingInterface
 import telapo.meteorwatcher.dal.model.Observation
 import telapo.meteorwatcher.dal.model.Profile
-import telapo.meteorwatcher.dal.model.scheme.SampleSchemeProvider
+import telapo.meteorwatcher.dal.model.scheme.ISchemeProvider
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.dal.model.scheme.SchemeProvider
+import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.modules.liveobservation.HmgFragment
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
@@ -80,8 +80,7 @@ class NewObservationActivity : AppCompatActivity() {
         return false
     }
 
-
-    private val schemeProvider : SchemeProvider = SampleSchemeProvider()
+    private val schemeProvider : ISchemeProvider = SchemeProvider()
     private fun getScheme(): Scheme {
         return schemeProvider.GetScheme(inpSchemes.selectedItemPosition)
     }
@@ -171,11 +170,11 @@ class NewObservationActivity : AppCompatActivity() {
                 return true
             }
             R.id.miFetch -> {
-                NetworkingInterface.FetchSchemese()
+                NetworkManager.FetchSchemes()
                 return true
             }
             R.id.miServerStatus -> {
-                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkingInterface.GetServerStatus()) { true->getString(
+                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkManager.GetServerStatus()) { true->getString(
                     R.string.strOnline) false->getString(R.string.strOffline)}, Toast.LENGTH_SHORT).show()
                 return true
             }
