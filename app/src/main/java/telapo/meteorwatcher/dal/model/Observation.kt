@@ -86,12 +86,12 @@ data class Observation(
     fun NewCycle(hmg : Int, lm: Int) {
         val count = Cycles.size
         val list = mutableListOf<SwarmResults>()
-        if (!Scheme.Swarm1.equals("")) list.add(SwarmResults(Scheme.Swarm1))
-        if (!Scheme.Swarm2.equals("")) list.add(SwarmResults(Scheme.Swarm2))
-        if (!Scheme.Swarm3.equals("")) list.add(SwarmResults(Scheme.Swarm3))
-        if (!Scheme.Swarm4.equals("")) list.add(SwarmResults(Scheme.Swarm4))
-        if (!Scheme.Swarm5.equals("")) list.add(SwarmResults(Scheme.Swarm5))
-        if (!Scheme.Swarm6.equals("")) list.add(SwarmResults(Scheme.Swarm6))
+        if (!Scheme.swarm1.equals("")) Scheme.swarm1?.let { SwarmResults(it) }?.let { list.add(it) }
+        if (!Scheme.swarm2.equals("")) Scheme.swarm2?.let { SwarmResults(it) }?.let { list.add(it) }
+        if (!Scheme.swarm3.equals("")) Scheme.swarm3?.let { SwarmResults(it) }?.let { list.add(it) }
+        if (!Scheme.swarm4.equals("")) Scheme.swarm4?.let { SwarmResults(it) }?.let { list.add(it) }
+        if (!Scheme.swarm5.equals("")) Scheme.swarm5?.let { SwarmResults(it) }?.let { list.add(it) }
+        if (!Scheme.swarm6.equals("")) Scheme.swarm6?.let { SwarmResults(it) }?.let { list.add(it) }
         list.add(SwarmResults("Spo"))
 
         Cycles.add(Cycle(count, list, hmg, lm))

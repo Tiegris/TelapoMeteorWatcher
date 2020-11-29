@@ -9,10 +9,4 @@
     <item
         android:id="@+id/miSchemes"
         android:title="@string/strSchemes" />
-    <item
-        android:id="@+id/miFetch"
-        android:title="@string/strFetch" />
-    <item
-        android:id="@+id/miServerStatus"
-        android:title="@string/strServerStatus" />
 </menu>

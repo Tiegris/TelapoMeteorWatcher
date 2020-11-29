@@ -40,11 +40,6 @@ object NetworkManager {
         }.start()
     }
 
-    fun GetServerStatus() : Boolean {
-
-        return false
-    }
-
     fun SyncObservations() {
 
     }
@@ -57,16 +52,14 @@ object NetworkManager {
         runCallOnBackgroundThread(request, onSuccess, onError)
     }
 
-    fun FetchSchemes() {
-        fetchSchemes(::displayWeatherData , ::showError)
+    interface ISchemeListReceiver {
+        fun ReceiveSchemes(schemes: List<Scheme>)
+        fun HandleError(throwable: Throwable)
     }
 
-    private fun displayWeatherData(schemes: List<Scheme>) {
-        val alma = schemes;
+    fun FetchSchemes(receiver : ISchemeListReceiver ) {
+        fetchSchemes(receiver::ReceiveSchemes , receiver::HandleError)
     }
 
-    private fun showError(throwable: Throwable) {
-
-    }
 
 }

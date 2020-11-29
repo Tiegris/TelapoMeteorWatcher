@@ -1,18 +1,21 @@
 package telapo.meteorwatcher.dal.model.scheme
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
 
 @Dao
-interface ShoppingItemDao {
+interface SchemeDao {
     @Query("SELECT * FROM schemes")
     fun GetAll(): List<Scheme>
 
     @Insert
-    fun Insert(scheme: Scheme): Long
-
-    @Update
-    fun Update(scheme: Scheme)
+    fun Insert(vararg scheme: Scheme)
 
     @Delete
     fun DeleteItem(scheme: Scheme)
+
+    @Query("DELETE FROM schemes")
+    fun DeleteAll()
 }

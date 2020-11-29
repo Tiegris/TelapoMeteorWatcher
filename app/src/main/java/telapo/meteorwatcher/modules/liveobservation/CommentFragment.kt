@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Comment
 import telapo.meteorwatcher.utility.Formater
-import telapo.meteorwatcher.utility.Sensors
+import telapo.meteorwatcher.utility.Time
 
 interface ICommentable {
     fun AddComment(c: Comment)
@@ -49,7 +49,7 @@ class CommentFragment(val o: ICommentable) : AppCompatDialogFragment() {
             val view: View = LayoutInflater.from(context).inflate(R.layout.fragment_comment, null)
             ts = view.findViewById(R.id.tvTimeStamp)
             comment = view.findViewById(R.id.tbComment)
-            ts?.setText(Formater.GetDateTime(Sensors.Time.Utc))
+            ts?.setText(Formater.GetDateTime(Time.Utc))
 
             return view
         }

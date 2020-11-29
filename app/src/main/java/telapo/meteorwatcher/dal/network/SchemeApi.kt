@@ -9,6 +9,6 @@ interface SchemeApi {
 
     @GET("/api/schemes")
     fun GetSchemes(
-        @Query("limit") limit: Int = 6
+        @Query("limit") limit: Int = 4
     ) : Call<List<Scheme>>
 }

@@ -10,7 +10,4 @@
     <item
         android:id="@+id/miSync"
         android:title="@string/strSync" />
-    <item
-        android:id="@+id/miServerStatus"
-        android:title="@string/strServerStatus" />
 </menu>

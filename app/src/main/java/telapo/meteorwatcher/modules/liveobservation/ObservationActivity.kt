@@ -53,7 +53,7 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
 
     private fun exit(){
         val dialogClickListener =
-            DialogInterface.OnClickListener { dialog, which ->
+            DialogInterface.OnClickListener { _, which ->
                 when (which) {
                     DialogInterface.BUTTON_POSITIVE -> {
                         this.finish()

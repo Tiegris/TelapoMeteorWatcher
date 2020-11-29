@@ -16,18 +16,17 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
+import telapo.meteorwatcher.dal.local.AppDatabase
 import telapo.meteorwatcher.dal.model.Observation
 import telapo.meteorwatcher.dal.model.Profile
-import telapo.meteorwatcher.dal.model.scheme.ISchemeProvider
 import telapo.meteorwatcher.dal.model.scheme.Scheme
-import telapo.meteorwatcher.dal.model.scheme.SchemeProvider
-import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.modules.liveobservation.HmgFragment
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
 import telapo.meteorwatcher.utility.Formater
-import telapo.meteorwatcher.utility.Sensors
+import telapo.meteorwatcher.utility.Time
 import java.util.*
+import kotlin.concurrent.thread
 
 class NewObservationActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -43,10 +42,16 @@ class NewObservationActivity : AppCompatActivity() {
 
         val spinner: Spinner = findViewById(R.id.inpSchemes)
 
-        ArrayAdapter(this, android.R.layout.simple_spinner_item, schemeProvider.GetList()
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+        thread {
+            schemes = AppDatabase.getInstance(this).schemeDao().GetAll()
+            runOnUiThread {
+                ArrayAdapter(
+                    this, android.R.layout.simple_spinner_item, schemes!!
+                ).also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinner.adapter = adapter
+                }
+            }
         }
 
         val spinner2: Spinner = findViewById(R.id.inpPeriodTime)
@@ -62,7 +67,6 @@ class NewObservationActivity : AppCompatActivity() {
         btnStart.setOnClickListener {
             startClicked()
          }
-
     }
 
     private fun validateStartTime() : Boolean {
@@ -80,16 +84,34 @@ class NewObservationActivity : AppCompatActivity() {
         return false
     }
 
-    private val schemeProvider : ISchemeProvider = SchemeProvider()
+    private var schemes : List<Scheme>? = null
     private fun getScheme(): Scheme {
-        return schemeProvider.GetScheme(inpSchemes.selectedItemPosition)
+        return schemes!!.get(inpSchemes.selectedItemPosition)
     }
 
     private fun startClicked() {
         if (validateStartTime()) {
+            val profile = Profile.CreateSnapshot()
+            if (profile.Name == "") {
+                Toast.makeText(
+                    this,
+                    "Please add your name.",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            }
+            if (schemes!!.size == 0) {
+                Toast.makeText(
+                    this,
+                    "No scheme selected.",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            }
+
             val o = Observation(
                 mutableListOf(),
-                Profile.CreateSnapshot(),
+                profile,
                 loc,
                 dt.clone() as Calendar,
                 (inpPeriodTime.selectedItemPosition+1)*15,
@@ -142,9 +164,9 @@ class NewObservationActivity : AppCompatActivity() {
         }
 
 
-        dt = Sensors.Time.Local
+        dt = Time.Local
         tvTimeLocal.text = Formater.GetDateTime(dt)
-        tvTimeUtc.text = Formater.GetDateTime(Sensors.Time.Utc)
+        tvTimeUtc.text = Formater.GetDateTime(Time.Utc)
 
         tvProfileName.text = Profile.Name
         tvProfileAddress.text = Profile.AddressCity
@@ -167,15 +189,6 @@ class NewObservationActivity : AppCompatActivity() {
             }
             R.id.miSchemes -> {
                 startActivity(Intent(this, SchemesActivity::class.java))
-                return true
-            }
-            R.id.miFetch -> {
-                NetworkManager.FetchSchemes()
-                return true
-            }
-            R.id.miServerStatus -> {
-                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkManager.GetServerStatus()) { true->getString(
-                    R.string.strOnline) false->getString(R.string.strOffline)}, Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

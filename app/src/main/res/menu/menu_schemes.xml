@@ -4,6 +4,6 @@
         android:id="@+id/miFetch"
         android:title="@string/strFetch" />
     <item
-        android:id="@+id/miDelete"
+        android:id="@+id/miDeleteAll"
         android:title="@string/strDeleteAll" />
 </menu>

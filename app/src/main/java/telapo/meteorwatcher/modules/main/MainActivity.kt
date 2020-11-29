@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import telapo.meteorwatcher.R
@@ -46,11 +45,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.miSync -> {
                 NetworkManager.SyncObservations()
-                return true
-            }
-            R.id.miServerStatus -> {
-                Toast.makeText(this, getString(R.string.strNetworkStatus) + " " + when(NetworkManager.GetServerStatus()) { true->getString(
-                                    R.string.strOnline) false->getString(R.string.strOffline)}, Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
