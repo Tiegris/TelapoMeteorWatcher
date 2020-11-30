@@ -8,7 +8,6 @@
         <item name="titleTextColor">@color/colorText</item>
         <item name="android:textColorPrimary">@color/colorText</item>
         <item name="android:textColorSecondary">@color/colorText</item>
-        <item name="android:textColorTertiary">@color/colorText</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
 
         <item name="actionMenuTextColor">@color/colorText</item>
@@ -36,7 +35,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="titleTextColor">@color/colorText</item>
-        <item name="android:textColorTertiary">@color/colorText</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
 
         <item name="actionMenuTextColor">@color/colorText</item>
@@ -56,8 +54,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="titleTextColor">@color/colorText</item>
-        <item name="android:textColorTertiary">@color/colorText</item>
-        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
 
         <item name="actionMenuTextColor">@color/colorText</item>
         <item name="android:actionMenuTextColor">@color/colorText</item>
@@ -79,7 +75,6 @@
         <item name="colorSecondary">@color/colorText</item>
 
         <item name="android:textColor">@color/colorText</item>
-        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
 
         <item name="actionMenuTextColor">@color/colorText</item>
         <item name="android:actionMenuTextColor">@color/colorText</item>
@@ -88,8 +83,6 @@
         <item name="itemTextColor">@color/colorText</item>
         <item name="itemFillColor">@color/colorText</item>
     </style>
-
-
 
 
 

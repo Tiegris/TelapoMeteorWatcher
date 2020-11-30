@@ -18,19 +18,19 @@
             android:name=".modules.schemes.SchemesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label="Start new observation"/>
+            android:label="@string/strSchemes"/>
 
         <activity
             android:name=".modules.liveobservation.ObservationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label="Start new observation"/>
+            android:label="@string/strObservation"/>
 
         <activity
             android:name=".modules.newobservation.NewObservationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label="Start new observation"/>
+            android:label="@string/strTitleNewObservation"/>
         
         <activity
             android:name=".modules.main.MainActivity"

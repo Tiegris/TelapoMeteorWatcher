@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miProfile -> {
-                ProfileFragment().show(supportFragmentManager, ProfileFragment::class.java.simpleName)
+                ProfileFragment(null).show(supportFragmentManager, ProfileFragment::class.java.simpleName)
                 return true
             }
             R.id.miSchemes -> {

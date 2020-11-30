@@ -30,5 +30,7 @@
     <string name="strSynced">Synced</string>
     <string name="strNotSynced">Not uploaded yet</string>
     <string name="strNetworkError">Error in server connection!</string>
+    <string name="strObservation">Observation</string>
+    <string name="strTitleNewObservation">Start new observation</string>
 
 </resources>

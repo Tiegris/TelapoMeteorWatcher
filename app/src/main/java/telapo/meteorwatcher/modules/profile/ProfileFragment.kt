@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Profile
 
+class ProfileFragment(val receiver: ProfileFragment.IReceiver?) : AppCompatDialogFragment() {
+    interface IReceiver {
+        fun ReceviePing()
+    }
 
-class ProfileFragment : AppCompatDialogFragment() {
     private var name: EditText? = null
     private var email: EditText? = null
     private var addr: EditText? = null
@@ -22,11 +25,12 @@ class ProfileFragment : AppCompatDialogFragment() {
             .setView(contentView)
             .setPositiveButton(R.string.strOk) { _, _ ->
                run {
-                    Profile.Name = name?.text.toString()
-                    Profile.Email = email?.text.toString()
-                    Profile.AddressCity = addr?.text.toString()
-                    Profile.Commit()
-                }
+                   Profile.Name = name?.text.toString()
+                   Profile.Email = email?.text.toString()
+                   Profile.AddressCity = addr?.text.toString()
+                   Profile.Commit()
+                   receiver?.ReceviePing()
+               }
             }
             .setNegativeButton(R.string.strCancel, null)
             .create()

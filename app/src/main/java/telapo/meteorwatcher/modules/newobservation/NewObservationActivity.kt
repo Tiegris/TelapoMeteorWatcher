@@ -28,7 +28,7 @@ import telapo.meteorwatcher.utility.Time
 import java.util.*
 import kotlin.concurrent.thread
 
-class NewObservationActivity : AppCompatActivity() {
+class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var loc: Location? = null
@@ -110,11 +110,6 @@ class NewObservationActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        refresh()
-    }
-
     override fun onResume() {
         super.onResume()
         refresh()
@@ -189,7 +184,7 @@ class NewObservationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miProfile -> {
-                ProfileFragment().show(supportFragmentManager, ProfileFragment::class.java.simpleName)
+                ProfileFragment(this).show(supportFragmentManager, ProfileFragment::class.java.simpleName)
                 return true
             }
             R.id.miSchemes -> {
@@ -217,6 +212,10 @@ class NewObservationActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun ReceviePing() {
+        refresh()
     }
 
 }
