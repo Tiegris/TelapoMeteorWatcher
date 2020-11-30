@@ -24,7 +24,7 @@ class HmgFragment(val o: Context? = null, val start: Boolean = false) : AppCompa
             .setView(contentView)
             .setPositiveButton(R.string.strOk) { _, _ ->
                 run {
-                    if (hmg!!.text.isNotEmpty()) {
+                    if (hmg!!.text.isNotEmpty() && lm!!.text.isNotEmpty()) {
                         if (Observation.ActiveObservation?.CycleLives!!) {
                             Observation.ActiveObservation?.LatestCycle?.Hmg =
                                 hmg?.text.toString().toInt()

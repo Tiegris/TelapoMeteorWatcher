@@ -14,7 +14,7 @@ class SchemesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val bDetails: ImageButton
 
     var item: Scheme? = null
-    var listener: IListener? = null
+    var listener: ISchemeListener? = null
 
     init {
         tvName = itemView.findViewById(R.id.tvSchemeName)

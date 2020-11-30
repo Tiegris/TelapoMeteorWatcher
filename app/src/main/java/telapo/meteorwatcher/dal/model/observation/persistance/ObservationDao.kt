@@ -1,6 +1,9 @@
 package telapo.meteorwatcher.dal.model.observation.persistance
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface ObservationDao {
@@ -16,8 +19,8 @@ interface ObservationDao {
     @Update
     fun Update(vararg observation: ObservationJson)
 
-    @Delete
-    fun DeleteItem(observation: ObservationJson)
+    @Query("DELETE FROM observations WHERE value = :json")
+    fun DeleteItem(json: String)
 
     @Query("DELETE FROM observations")
     fun DeleteAll()

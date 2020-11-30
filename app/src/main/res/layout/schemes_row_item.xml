@@ -49,7 +49,6 @@
 
     <ImageButton
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:scaleType="fitXY"
         android:id="@+id/bDelete"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -70,7 +69,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:scaleType="fitXY"
         android:src="@drawable/ic_pencil_grey600_48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bDelete"

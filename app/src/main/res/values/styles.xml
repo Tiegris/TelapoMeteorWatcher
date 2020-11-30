@@ -6,7 +6,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="titleTextColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
         <item name="android:textColorSecondary">@color/colorText</item>
+        <item name="android:textColorTertiary">@color/colorText</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
+
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="android:actionMenuTextColor">@color/colorText</item>
+
+        <item name="android:itemBackground">@color/colorBackground</item>
+        <item name="itemTextColor">@color/colorText</item>
+        <item name="itemFillColor">@color/colorText</item>
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
@@ -18,11 +28,74 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="titleTextColor">@color/colorText</item>
+        <item name="android:textColorTertiary">@color/colorText</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
+
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="android:actionMenuTextColor">@color/colorText</item>
+
+        <item name="android:itemBackground">@color/colorBackground</item>
+        <item name="itemTextColor">@color/colorText</item>
+        <item name="itemFillColor">@color/colorText</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="titleTextColor">@color/colorText</item>
+        <item name="android:textColorTertiary">@color/colorText</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="android:actionMenuTextColor">@color/colorText</item>
+
+        <item name="android:itemBackground">@color/colorBackground</item>
+        <item name="itemTextColor">@color/colorText</item>
+        <item name="itemFillColor">@color/colorText</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="android:background">@color/colorBackground</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="titleTextColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
+        <item name="android:textColorTertiary">@color/colorText</item>
+        <item name="colorSecondary">@color/colorText</item>
+
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
+
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="android:actionMenuTextColor">@color/colorText</item>
+
+        <item name="android:itemBackground">@color/colorBackground</item>
+        <item name="itemTextColor">@color/colorText</item>
+        <item name="itemFillColor">@color/colorText</item>
+    </style>
+
+
+
+
+
+    <style name="spinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colorText</item>
+    </style>
 
     <style name="SmallButtonStyle">
         <item name="android:layout_width">35dp</item>
@@ -31,5 +104,10 @@
         <item name="android:textColor">@color/colorDarkRed</item>
         <item name="android:background">@drawable/bordered_ligh_block</item>
     </style>
+
+    <style name="TextStyle">
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
 
 </resources>

@@ -5,18 +5,29 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Profile
 import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
-import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.modules.newobservation.NewObservationActivity
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MainAdapter
+
+    private fun initRecyclerView() {
+        recyclerView = MainRecyclerView
+        adapter = MainAdapter(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        initRecyclerView()
         thread {
             val result = ObservationManager.getInstance(this).LoadAll();
             onDataLoaded(result);
@@ -39,11 +51,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onDataLoaded(list : MutableList<Observation>) {
-
+        runOnUiThread {
+            adapter.Update(list);
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
@@ -56,10 +69,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.miSchemes -> {
                 startActivity(Intent(this, SchemesActivity::class.java))
-                return true
-            }
-            R.id.miSync -> {
-                NetworkManager.SyncObservations()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

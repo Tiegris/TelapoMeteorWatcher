@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".modules.profile.ProfileFragment"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    >
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/strName"
         android:id="@+id/tbName"
+        android:textColorHint="@color/colorTextTransparent"
         />
 
     <EditText
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/strEmail"
         android:id="@+id/tbEmail"
+        android:textColorHint="@color/colorTextTransparent"
         />
 
     <EditText
@@ -27,6 +30,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/strAddress"
         android:id="@+id/tbAddress"
+        android:textColorHint="@color/colorTextTransparent"
         />
 
 </LinearLayout>

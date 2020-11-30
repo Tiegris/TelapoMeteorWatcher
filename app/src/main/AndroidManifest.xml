@@ -16,15 +16,21 @@
 
         <activity
             android:name=".modules.schemes.SchemesActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Start new observation"/>
 
         <activity
             android:name=".modules.liveobservation.ObservationActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Start new observation"/>
 
         <activity
             android:name=".modules.newobservation.NewObservationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Start new observation"/>
         
         <activity
             android:name=".modules.main.MainActivity"

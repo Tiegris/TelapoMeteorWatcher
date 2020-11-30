@@ -27,5 +27,8 @@
     <string name="strName">Name</string>
     <string name="strAddress">Address</string>
     <string name="strDeleteAll">Delete All</string>
+    <string name="strSynced">Synced</string>
+    <string name="strNotSynced">Not uploaded yet</string>
+    <string name="strNetworkError">Error in server connection!</string>
 
 </resources>

@@ -21,10 +21,11 @@ class SchemesActivity() : AppCompatActivity(), NetworkManager.ISchemeListReceive
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schemes)
+        setSupportActionBar(findViewById(R.id.toolbar))
     }
 
     override fun onStart() {
-            super.onStart()
+        super.onStart()
         initRecyclerView()
     }
 
@@ -83,7 +84,7 @@ class SchemesActivity() : AppCompatActivity(), NetworkManager.ISchemeListReceive
     }
 
     override fun HandleError(throwable: Throwable) {
-        Toast.makeText( this, "Error in server connection!",Toast.LENGTH_SHORT).show()
+        Toast.makeText( this, this.getString(R.string.strNetworkError),Toast.LENGTH_SHORT).show()
     }
 
 }

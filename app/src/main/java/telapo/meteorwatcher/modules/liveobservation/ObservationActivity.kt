@@ -25,6 +25,7 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_observation)
+        setSupportActionBar(findViewById(R.id.toolbar))
         initRecyclerView()
     }
 

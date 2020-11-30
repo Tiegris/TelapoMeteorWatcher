@@ -26,13 +26,12 @@ class ObservationManager {
         for (item in list) {
             result.add(Gson().fromJson<Observation>(item, Observation::class.java))
         }
-
-        //val gson = Gson()
-        //val itemType = object : TypeToken<List<Observation>>() {}.type
-        //val result = gson.fromJson<List<Observation>>(jsonString, itemType)
-
-        //val result = Gson().fromJson<Observation>(list, Observation::class.java)
         return result
+    }
+
+    fun Delete(observation: Observation) {
+        val value = Gson().toJson(observation)
+        AppDatabase.getInstance(context!!).observationDao().DeleteItem(value);
     }
 
     private var context: Context? = null

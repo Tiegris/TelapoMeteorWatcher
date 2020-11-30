@@ -32,6 +32,11 @@ class ProfileFragment : AppCompatDialogFragment() {
             .create()
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(R.color.colorBackground)
+    }
+
     private val contentView: View
         get() {
             val view: View = LayoutInflater.from(context).inflate(R.layout.fragment_profile, null)

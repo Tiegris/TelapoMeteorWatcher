@@ -37,36 +37,14 @@ class NewObservationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_observation)
+        setSupportActionBar(findViewById(R.id.toolbar))
+
         Profile.Initialise(this)
         inpOfficialStart.setIs24HourView(true)
 
-        val spinner: Spinner = findViewById(R.id.inpSchemes)
-
-        thread {
-            schemes = AppDatabase.getInstance(this).schemeDao().GetAll()
-            runOnUiThread {
-                ArrayAdapter(
-                    this, android.R.layout.simple_spinner_item, schemes!!
-                ).also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    spinner.adapter = adapter
-                }
-            }
-        }
-
-        val spinner2: Spinner = findViewById(R.id.inpPeriodTime)
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.saPeriods,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner2.adapter = adapter
-        }
-
         btnStart.setOnClickListener {
             startClicked()
-         }
+        }
     }
 
     private fun validateStartTime() : Boolean {
@@ -137,7 +115,37 @@ class NewObservationActivity : AppCompatActivity() {
         refresh()
     }
 
+    override fun onResume() {
+        super.onResume()
+        refresh()
+    }
+
+
     private fun refresh() {
+        val spinner: Spinner = findViewById(R.id.inpSchemes)
+
+        thread {
+            schemes = AppDatabase.getInstance(this).schemeDao().GetAll()
+            runOnUiThread {
+                ArrayAdapter(
+                    this, android.R.layout.simple_spinner_item, schemes!!
+                ).also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinner.adapter = adapter
+                }
+            }
+        }
+
+        val spinner2: Spinner = findViewById(R.id.inpPeriodTime)
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.saPeriods,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner2.adapter = adapter
+        }
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -180,10 +188,6 @@ class NewObservationActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.miRefresh -> {
-                refresh()
-                return true
-            }
             R.id.miProfile -> {
                 ProfileFragment().show(supportFragmentManager, ProfileFragment::class.java.simpleName)
                 return true

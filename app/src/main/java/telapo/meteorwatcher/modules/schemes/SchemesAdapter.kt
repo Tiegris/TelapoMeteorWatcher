@@ -9,13 +9,13 @@ import telapo.meteorwatcher.dal.local.AppDatabase
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import kotlin.concurrent.thread
 
-interface IListener {
+interface ISchemeListener {
     fun Delete(scheme: Scheme)
     fun Details(scheme: Scheme)
 }
 
 class SchemesAdapter(private val context: Context) :
-    RecyclerView.Adapter<SchemesViewHolder>() , IListener{
+    RecyclerView.Adapter<SchemesViewHolder>() , ISchemeListener{
 
     val Items = mutableListOf<Scheme>()
 

@@ -5,13 +5,14 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 
 object NetworkManager {
     //private const val SERVICE_URL = "https://www.tigri.ddns.net"
     private const val SERVICE_URL = "http://192.168.1.65:8090/"
 
-    private val api: SchemeApi
+    private val api: ApiInterface
 
     init {
         val retrofit = Retrofit.Builder()
@@ -19,10 +20,10 @@ object NetworkManager {
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        api = retrofit.create(SchemeApi::class.java)
+        api = retrofit.create(ApiInterface::class.java)
     }
 
-    private fun <T> runCallOnBackgroundThread(
+    private fun <T> executeOnBackground(
         call: Call<T>,
         onSuccess: (T) -> Unit,
         onError: (Throwable) -> Unit
@@ -40,16 +41,14 @@ object NetworkManager {
         }.start()
     }
 
-    fun SyncObservations() {
-
+    interface IObservationUploadResultReceiver {
+        fun AcknowledgeSucces(observation: Observation)
+        fun HandleError(throwable: Throwable)
     }
 
-    private fun fetchSchemes(
-        onSuccess: (List<Scheme>) -> Unit,
-        onError: (Throwable) -> Unit
-    ){
-        val request = api.GetSchemes()
-        runCallOnBackgroundThread(request, onSuccess, onError)
+    fun SyncObservation(observation: Observation, receiver: IObservationUploadResultReceiver ) {
+        val request = api.UploadObservation((observation))
+        executeOnBackground(request, receiver::AcknowledgeSucces, receiver::HandleError)
     }
 
     interface ISchemeListReceiver {
@@ -58,7 +57,8 @@ object NetworkManager {
     }
 
     fun FetchSchemes(receiver : ISchemeListReceiver ) {
-        fetchSchemes(receiver::ReceiveSchemes , receiver::HandleError)
+        val request = api.GetSchemes()
+        executeOnBackground(request, receiver::ReceiveSchemes, receiver::HandleError)
     }
 
 
