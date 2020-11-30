@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
 import telapo.meteorwatcher.R
-import telapo.meteorwatcher.dal.model.Observation
+import telapo.meteorwatcher.dal.model.observation.Observation
 
 
 class HmgFragment(val o: Context? = null, val start: Boolean = false) : AppCompatDialogFragment() {

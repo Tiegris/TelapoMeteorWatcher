@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_observation.*
 import telapo.meteorwatcher.R
-import telapo.meteorwatcher.dal.model.Comment
-import telapo.meteorwatcher.dal.model.Observation
+import telapo.meteorwatcher.dal.model.observation.Comment
+import telapo.meteorwatcher.dal.model.observation.Observation
+import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
+import kotlin.concurrent.thread
 
 
 class ObservationActivity : AppCompatActivity(), ICommentable {
@@ -45,6 +47,13 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
         adapter.Set(item)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+        thread {
+            ObservationManager.getInstance(this).Save(Observation.ActiveObservation!!)
+        }
     }
 
     override fun onBackPressed() {

@@ -8,10 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.dal.model.observation.Observation
+import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
 import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.modules.newobservation.NewObservationActivity
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +28,18 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { _ ->
             startActivity(Intent(this, NewObservationActivity::class.java))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        thread {
+            val result = ObservationManager.getInstance(this).LoadAll();
+            onDataLoaded(result);
+        }
+    }
+
+    private fun onDataLoaded(list : MutableList<Observation>) {
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

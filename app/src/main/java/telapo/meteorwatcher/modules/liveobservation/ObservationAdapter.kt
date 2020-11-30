@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import telapo.meteorwatcher.R
-import telapo.meteorwatcher.dal.model.Observation
+import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 
 class ObservationAdapter(private val context: Context) :

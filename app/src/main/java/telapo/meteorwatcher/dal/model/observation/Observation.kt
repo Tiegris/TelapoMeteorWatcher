@@ -1,51 +1,10 @@
-package telapo.meteorwatcher.dal.model
+package telapo.meteorwatcher.dal.model.observation
 
 import android.location.Location
+import telapo.meteorwatcher.dal.model.ProfileSnapshot
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.utility.Formater
 import java.util.*
-
-data class Cycle(
-    val Id: Int,
-    val Swarms: MutableList<SwarmResults>,
-    var Hmg: Int,
-    var Lm: Int
-) {
-
-}
-
-
-data class SwarmResults(
-    val Name: String,
-    var count_m5: Int = 0,
-    var count_m4: Int = 0,
-    var count_m3: Int = 0,
-    var count_m2: Int = 0,
-    var count_m1: Int = 0,
-    var count_0: Int = 0,
-    var count_1: Int = 0,
-    var count_2: Int = 0,
-    var count_3: Int = 0,
-    var count_4: Int = 0,
-    var count_5: Int = 0,
-) {
-    val Count : Int get() {
-        return count_0+count_1+count_2+count_3+count_4+count_5+count_m1+count_m2+count_m3+count_m4+count_m5;
-    }
-    fun Add(mg: Int) {
-        if (mg == 5) count_5++
-        if (mg == 4) count_4++
-        if (mg == 3) count_3++
-        if (mg == 2) count_2++
-        if (mg == 1) count_1++
-        if (mg == 0) count_0++
-        if (mg == -1) count_m1++
-        if (mg == -2) count_m2++
-        if (mg == -3) count_m3++
-        if (mg == -4) count_m4++
-        if (mg == -5) count_m5++
-    }
-}
 
 data class Observation(
     val Comments : MutableList<Comment>,
@@ -69,7 +28,6 @@ data class Observation(
         copy.add(Calendar.MINUTE, PeriodTime * (Cycles.size))
         return Calendar.getInstance().before(copy) && Cycles.isNotEmpty()
     }
-
 
     fun GetCycleDuration(): String {
         val c = if (Cycles.size == 0) 0 else Cycles.size-1
@@ -106,6 +64,7 @@ data class Observation(
     }
 
     companion object {
+        var DbId : Long? = null
         var ActiveObservation : Observation? = null
         fun Activate(o : Observation) {
             ActiveObservation = o;

@@ -17,8 +17,8 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_new_observation.*
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.local.AppDatabase
-import telapo.meteorwatcher.dal.model.Observation
 import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.modules.liveobservation.HmgFragment
 import telapo.meteorwatcher.modules.profile.ProfileFragment
