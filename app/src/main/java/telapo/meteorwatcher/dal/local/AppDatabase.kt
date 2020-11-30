@@ -9,7 +9,7 @@ import telapo.meteorwatcher.dal.model.observation.persistance.ObservationJson
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.dal.model.scheme.SchemeDao
 
-@Database(entities = [Scheme::class, ObservationJson::class], version = 1)
+@Database(entities = [ObservationJson::class, Scheme::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun schemeDao(): SchemeDao
     abstract fun observationDao(): ObservationDao

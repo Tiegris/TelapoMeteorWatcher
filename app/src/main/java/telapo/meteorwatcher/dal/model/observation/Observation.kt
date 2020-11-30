@@ -1,6 +1,5 @@
 package telapo.meteorwatcher.dal.model.observation
 
-import android.location.Location
 import telapo.meteorwatcher.dal.model.ProfileSnapshot
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.utility.Formater
@@ -9,7 +8,8 @@ import java.util.*
 data class Observation(
     val Comments : MutableList<Comment>,
     val UsedProfile: ProfileSnapshot,
-    val Gps: Location?,
+    val Latitude: Double?,
+    val Longitude: Double?,
     val OfficialStart : Calendar,
     var PeriodTime : Int,
     val Scheme: Scheme,

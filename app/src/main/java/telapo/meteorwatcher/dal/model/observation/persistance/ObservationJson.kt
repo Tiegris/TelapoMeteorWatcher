@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "observations")
 data class ObservationJson (
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long?,
-    @ColumnInfo(name = "value") val value: String?,
+    @ColumnInfo(name = "value") val value: String,
 )

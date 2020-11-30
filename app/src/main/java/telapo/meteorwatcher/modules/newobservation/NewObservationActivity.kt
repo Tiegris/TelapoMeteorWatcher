@@ -112,7 +112,8 @@ class NewObservationActivity : AppCompatActivity() {
             val o = Observation(
                 mutableListOf(),
                 profile,
-                loc,
+                loc?.longitude,
+                loc?.latitude,
                 dt.clone() as Calendar,
                 (inpPeriodTime.selectedItemPosition+1)*15,
                 getScheme()

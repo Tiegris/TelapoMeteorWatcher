@@ -8,7 +8,7 @@ interface ObservationDao {
     fun GetAll(): List<String>
 
     @Insert
-    fun Insert(vararg observation: ObservationJson) : Long
+    fun Insert(observation: ObservationJson) : Long
 
     @Query("SELECT COUNT(*) FROM observations WHERE id = :id")
     fun Exists(vararg id: Long) : Int

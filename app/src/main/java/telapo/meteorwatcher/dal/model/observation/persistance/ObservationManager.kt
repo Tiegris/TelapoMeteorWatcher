@@ -27,6 +27,11 @@ class ObservationManager {
             result.add(Gson().fromJson<Observation>(item, Observation::class.java))
         }
 
+        //val gson = Gson()
+        //val itemType = object : TypeToken<List<Observation>>() {}.type
+        //val result = gson.fromJson<List<Observation>>(jsonString, itemType)
+
+        //val result = Gson().fromJson<Observation>(list, Observation::class.java)
         return result
     }
 
