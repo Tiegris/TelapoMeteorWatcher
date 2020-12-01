@@ -18,6 +18,6 @@ data class Scheme(
     ) {
 
     override fun toString(): String {
-        return "${name}, v: $version"
+        return "${name}, v$version"
     }
 }
