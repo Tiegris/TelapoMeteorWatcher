@@ -24,11 +24,12 @@ import telapo.meteorwatcher.modules.liveobservation.HmgFragment
 import telapo.meteorwatcher.modules.profile.ProfileFragment
 import telapo.meteorwatcher.modules.schemes.SchemesActivity
 import telapo.meteorwatcher.utility.Formater
+import telapo.meteorwatcher.utility.IPingable
 import telapo.meteorwatcher.utility.Time
 import java.util.*
 import kotlin.concurrent.thread
 
-class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
+class NewObservationActivity : AppCompatActivity(), IPingable {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var loc: Location? = null
@@ -51,11 +52,11 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
         val local = dt.get(Calendar.HOUR_OF_DAY)*60 + dt.get(Calendar.MINUTE)
         val official = inpOfficialStart.hour*60 + inpOfficialStart.minute
 
-        if (Math.abs(local-official) <= 30) {
+        if (Math.abs(local-official) <= 5) {
             dt.add(Calendar.MINUTE, official-local)
             return true
         }
-        if (Math.abs(local-(official+24*60)) <= 30) {
+        if (Math.abs(local-(official+24*60)) <= 5) {
             dt.add(Calendar.MINUTE, (official+24*60)-local)
             return true
         }
@@ -68,25 +69,25 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
     }
 
     private fun startClicked() {
-        if (validateStartTime()) {
-            val profile = Profile.CreateSnapshot()
-            if (profile.Name == "") {
-                Toast.makeText(
-                    this,
-                    getString(R.string.strErrNoName),
-                    Toast.LENGTH_LONG
-                ).show()
-                return
-            }
-            if (schemes!!.size == 0) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.strErrNoScheme),
-                    Toast.LENGTH_LONG
-                ).show()
-                return
-            }
+        val profile = Profile.CreateSnapshot()
+        if (profile.Name == "") {
+            Toast.makeText(
+                this,
+                getString(R.string.strErrNoName),
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+        if (schemes!!.size == 0) {
+            Toast.makeText(
+                this,
+                getString(R.string.strErrNoScheme),
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
 
+        if (validateStartTime()) {
             val o = Observation(
                 mutableListOf(),
                 profile,
@@ -98,7 +99,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
             )
 
             Observation.Activate(o)
-            HmgFragment(this, null,true).show(
+            HmgFragment(this, this,true).show(
                 supportFragmentManager,
                 HmgFragment::class.java.simpleName
             )
@@ -166,7 +167,6 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
                 tvLocationLatitude.text = getText(R.string.strNullData)
             }
         }
-
 
         dt = Time.Local
         tvTimeLocal.text = Formater.GetDateTime(dt)

@@ -9,12 +9,9 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatDialogFragment
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.Profile
+import telapo.meteorwatcher.utility.IPingable
 
-class ProfileFragment(val receiver: ProfileFragment.IPingable?) : AppCompatDialogFragment() {
-
-    interface IPingable {
-        fun Ping()
-    }
+class ProfileFragment(val receiver: IPingable?) : AppCompatDialogFragment() {
 
     private var name: EditText? = null
     private var email: EditText? = null

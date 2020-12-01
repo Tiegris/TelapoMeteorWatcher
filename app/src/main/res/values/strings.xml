@@ -24,7 +24,7 @@
     <string name="strTitleNewObservation">Start new observation</string>
     <string name="strSuccess">Success!</string>
     <string name="strLocationNotGranted">Location permission NOT granted.</string>
-    <string name="strDifferenceMessage">Difference between local time and official start time can not be greater than 30 minutes.</string>
+    <string name="strDifferenceMessage">Difference between local time and official start time can not be greater than 5 minutes.</string>
     <string name="strErrNoScheme">No scheme selected.</string>
     <string name="strErrNoName">Please add your name.</string>
     <string name="strCancel">Cancel</string>

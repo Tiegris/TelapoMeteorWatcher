@@ -13,10 +13,11 @@ import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.observation.Comment
 import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
+import telapo.meteorwatcher.utility.IPingable
 import kotlin.concurrent.thread
 
 
-class ObservationActivity : AppCompatActivity(), ICommentable, HmgFragment.IPingable {
+class ObservationActivity : AppCompatActivity(), ICommentable, IPingable {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ObservationAdapter
 

@@ -12,16 +12,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.observation.Observation
+import telapo.meteorwatcher.utility.IPingable
 
 
-class HmgFragment(val o: Context? = null, val receiver: HmgFragment.IPingable? = null, val start: Boolean = false) : AppCompatDialogFragment() {
+class HmgFragment(val o: Context? = null, val receiver: IPingable? = null, val start: Boolean = false) : AppCompatDialogFragment() {
     private var hmg: EditText? = null
     private var lm: EditText? = null
     private var cycle: TextView? = null
-
-    interface IPingable {
-        fun Ping()
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
@@ -49,7 +46,9 @@ class HmgFragment(val o: Context? = null, val receiver: HmgFragment.IPingable? =
                     }
                 }
             }
-            .setNegativeButton(R.string.strCancel, null)
+            .setNegativeButton(R.string.strCancel) { _, _ ->
+                receiver?.Ping()
+            }
             .create()
     }
 
