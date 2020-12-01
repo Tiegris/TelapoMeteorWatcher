@@ -37,7 +37,6 @@ class ObservationActivity : AppCompatActivity(), ICommentable, IPingable {
 
     override fun onStart() {
         super.onStart()
-        Observation.ActiveDbId = null
         tvCycle.text = Observation.ActiveObservation?.GetCycleDuration()
     }
 
@@ -54,6 +53,8 @@ class ObservationActivity : AppCompatActivity(), ICommentable, IPingable {
         super.onPause()
         thread {
             ObservationManager.getInstance(this).Save(Observation.ActiveObservation!!)
+            if (exiting)
+                Observation.ActiveDbId = null
         }
     }
 
@@ -61,11 +62,13 @@ class ObservationActivity : AppCompatActivity(), ICommentable, IPingable {
         exit()
     }
 
+    private var exiting = false
     private fun exit(){
         val dialogClickListener =
             DialogInterface.OnClickListener { _, which ->
                 when (which) {
                     DialogInterface.BUTTON_POSITIVE -> {
+                        exiting = true
                         this.finish()
                     }
                     DialogInterface.BUTTON_NEGATIVE -> {
