@@ -12,6 +12,7 @@ class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvObservationDate: TextView
     val ibDelete: ImageButton
     val ibUpload: ImageButton
+    val ibStat: ImageButton
 
     var item: Observation? = null
     var listener: IMainListener? = null
@@ -26,6 +27,10 @@ class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         ibUpload = itemView.findViewById(R.id.ibUpload)
         ibUpload.setOnClickListener {
             item?.let { it2 -> listener?.Upload(it2) }
+        }
+        ibStat = itemView.findViewById(R.id.ibStat)
+        ibStat.setOnClickListener {
+            item?. let {it3 -> listener?.ShowStat(it3) }
         }
     }
 }

@@ -63,6 +63,20 @@ data class Observation(
         }
     }
 
+    class SwarmStatistic(val name: String, var Count: Int)
+    fun GetSwarmStatistics(): MutableList<SwarmStatistic> {
+        val results = mutableListOf<SwarmStatistic>()
+        for (swarm in Cycles[0].Swarms)
+        results.add(SwarmStatistic(swarm.Name,0))
+
+        for (cycle in Cycles) {
+            for (i in 0..cycle.Swarms.size-1) {
+                results[i].Count += cycle.Swarms[i].Count;
+            }
+        }
+        return results
+    }
+
     companion object {
         var ActiveDbId : Long? = null
         var ActiveObservation : Observation? = null

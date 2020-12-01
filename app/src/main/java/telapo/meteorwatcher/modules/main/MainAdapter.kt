@@ -1,24 +1,26 @@
 package telapo.meteorwatcher.modules.main
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
 import telapo.meteorwatcher.dal.network.NetworkManager
 import telapo.meteorwatcher.dal.network.NetworkManager.IObservationUploadResultReceiver
+import telapo.meteorwatcher.modules.diagrams.DiagramFragment
 import telapo.meteorwatcher.utility.Formater
 import kotlin.concurrent.thread
 
 interface IMainListener {
     fun Delete(observation: Observation)
     fun Upload(observation: Observation)
+    fun ShowStat(observation: Observation)
 }
 
-class MainAdapter(private val context: Activity) :
+class MainAdapter(private val context: AppCompatActivity) :
     RecyclerView.Adapter<MainViewHolder>() , IMainListener, IObservationUploadResultReceiver{
 
     val Items = mutableListOf<Observation>()
@@ -63,6 +65,13 @@ class MainAdapter(private val context: Activity) :
 
     override fun Upload(observation: Observation) {
         NetworkManager.SyncObservation(observation, this)
+    }
+
+    override fun ShowStat(observation: Observation) {
+        DiagramFragment(observation).show(
+            context.supportFragmentManager,
+            DiagramFragment::class.java.simpleName
+        )
     }
 
     override fun AcknowledgeSucces(observation: Observation) {
