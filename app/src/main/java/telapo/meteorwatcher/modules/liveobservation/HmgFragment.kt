@@ -14,10 +14,14 @@ import telapo.meteorwatcher.R
 import telapo.meteorwatcher.dal.model.observation.Observation
 
 
-class HmgFragment(val o: Context? = null, val start: Boolean = false) : AppCompatDialogFragment() {
+class HmgFragment(val o: Context? = null, val receiver: HmgFragment.IPingable? = null, val start: Boolean = false) : AppCompatDialogFragment() {
     private var hmg: EditText? = null
     private var lm: EditText? = null
     private var cycle: TextView? = null
+
+    interface IPingable {
+        fun Ping()
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
@@ -31,9 +35,13 @@ class HmgFragment(val o: Context? = null, val start: Boolean = false) : AppCompa
                             Observation.ActiveObservation?.LatestCycle?.Lm =
                                 lm?.text.toString().toInt()
                         }
-                        else
-                            Observation.ActiveObservation?.NewCycle(hmg?.text.toString().toInt(),lm?.text.toString().toInt())
-
+                        else {
+                            Observation.ActiveObservation?.NewCycle(
+                                hmg?.text.toString().toInt(),
+                                lm?.text.toString().toInt()
+                            )
+                            receiver?.Ping()
+                        }
                         if (this.start) {
                             val intent = Intent(o!!, ObservationActivity::class.java)
                             startActivity(intent)

@@ -28,7 +28,7 @@ import telapo.meteorwatcher.utility.Time
 import java.util.*
 import kotlin.concurrent.thread
 
-class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
+class NewObservationActivity : AppCompatActivity(), ProfileFragment.IPingable {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var loc: Location? = null
@@ -98,7 +98,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
             )
 
             Observation.Activate(o)
-            HmgFragment(this,true).show(
+            HmgFragment(this, null,true).show(
                 supportFragmentManager,
                 HmgFragment::class.java.simpleName
             )
@@ -214,7 +214,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
         }
     }
 
-    override fun ReceviePing() {
+    override fun Ping() {
         refresh()
     }
 

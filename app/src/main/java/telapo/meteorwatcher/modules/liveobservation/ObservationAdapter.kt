@@ -18,7 +18,6 @@ class ObservationAdapter(private val context: Context) :
             R.layout.observation_row_item, parent, false
         )
         return ObservationViewHolder(view)
-
     }
 
     fun Set(scheme: Scheme) {
@@ -41,9 +40,8 @@ class ObservationAdapter(private val context: Context) :
         val item = items[position]
         holder.tvSwarmName.text = item
 
-        holder.tvCount.text .let {
-            Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()
-        }
+        holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()
+
         holder.btn_0.setOnClickListener { Observation.ActiveObservation?.AddMeteor(0, item!!); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString() }
 
         holder.btn_1.setOnClickListener { Observation.ActiveObservation?.AddMeteor(1, item!!); holder.tvCount.text = Observation.ActiveObservation?.LatestCycle?.Swarms?.get(position)?.Count.toString()  }
@@ -60,4 +58,8 @@ class ObservationAdapter(private val context: Context) :
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun Update() {
+        notifyDataSetChanged()
+    }
 }

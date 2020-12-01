@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_observation.*
@@ -17,7 +16,7 @@ import telapo.meteorwatcher.dal.model.observation.persistance.ObservationManager
 import kotlin.concurrent.thread
 
 
-class ObservationActivity : AppCompatActivity(), ICommentable {
+class ObservationActivity : AppCompatActivity(), ICommentable, HmgFragment.IPingable {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ObservationAdapter
 
@@ -32,7 +31,6 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_live_observation, menu)
-        MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
@@ -56,10 +54,6 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
         thread {
             ObservationManager.getInstance(this).Save(Observation.ActiveObservation!!)
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     override fun onBackPressed() {
@@ -103,7 +97,7 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
             }
 
             R.id.miHmg -> {
-                HmgFragment().show(
+                HmgFragment(receiver = this).show(
                     supportFragmentManager,
                     HmgFragment::class.java.simpleName
                 )
@@ -114,4 +108,10 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun Ping() {
+        tvCycle.text = Observation.ActiveObservation?.GetCycleDuration()
+        adapter.Update()
+    }
+
 }

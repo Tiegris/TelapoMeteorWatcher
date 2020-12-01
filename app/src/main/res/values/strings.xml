@@ -45,10 +45,10 @@
 
     <string name="strOfficialStart">Official start (local time)</string>
     <string name="strStart">Start</string>
-    <string name="strCycle_">Cycle: </string>
-    <string name="strTimestamp">Timestamp: </string>
-    <string name="strHmg_">HMG: </string>
-    <string name="strLm_">LM: </string>
+    <string name="strCycle_">Cycle:</string>
+    <string name="strTimestamp">Timestamp:</string>
+    <string name="strHmg_">HMG:</string>
+    <string name="strLm_">LM:</string>
 
 
 </resources>
