@@ -38,6 +38,7 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
 
     override fun onStart() {
         super.onStart()
+        Observation.ActiveDbId = null
         tvCycle.text = Observation.ActiveObservation?.GetCycleDuration()
     }
 
@@ -57,6 +58,10 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
     override fun onBackPressed() {
         exit()
     }
@@ -74,8 +79,9 @@ class ObservationActivity : AppCompatActivity(), ICommentable {
             }
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(this,  R.style.AlertDialogStyle)
-        builder.setMessage("Are you sure you want to exit and terminate Observation?").setPositiveButton("Yes", dialogClickListener)
-            .setNegativeButton("Cancel", dialogClickListener).show()
+        builder.setMessage(getString(R.string.strObservationExitConfirmation)).setPositiveButton(getString(
+                    R.string.strYes), dialogClickListener)
+            .setNegativeButton(getString(R.string.strCancel), dialogClickListener).show()
     }
 
     override fun AddComment(c: Comment) {

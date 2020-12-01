@@ -7,15 +7,21 @@ import telapo.meteorwatcher.dal.model.observation.Observation
 
 class ObservationManager {
 
+    fun Insert(observation: Observation) {
+        val value = Gson().toJson(observation)
+        val json = ObservationJson(null, value)
+        Observation.ActiveDbId = AppDatabase.getInstance(context!!).observationDao().Insert(json)
+    }
+
     fun Save(observation: Observation) {
         val value = Gson().toJson(observation)
         val json = ObservationJson(null, value)
 
-        if (Observation.DbId == null || AppDatabase.getInstance(context!!)
-                .observationDao().Exists(Observation.DbId!!) == 0)
-            Observation.DbId = AppDatabase.getInstance(context!!).observationDao().Insert(json)
+        if (Observation.ActiveDbId == null || AppDatabase.getInstance(context!!)
+                .observationDao().Exists(Observation.ActiveDbId!!) == 0)
+            Observation.ActiveDbId = AppDatabase.getInstance(context!!).observationDao().Insert(json)
         else {
-            json.id = Observation.DbId
+            json.id = Observation.ActiveDbId
             AppDatabase.getInstance(context!!).observationDao().Update(json)
         }
     }

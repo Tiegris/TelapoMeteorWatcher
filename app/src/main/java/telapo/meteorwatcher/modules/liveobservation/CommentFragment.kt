@@ -31,7 +31,7 @@ class CommentFragment(val o: ICommentable) : AppCompatDialogFragment() {
                 run {
                     o.AddComment(Comment( ts?.text.toString(), comment?.text.toString() ))
                     Toast.makeText(o as Activity,
-                        "Comment saved",
+                        getString(R.string.strCommentSaved),
                         Toast.LENGTH_SHORT).show()
                 }
             }

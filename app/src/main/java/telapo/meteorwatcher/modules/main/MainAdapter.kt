@@ -39,7 +39,7 @@ class MainAdapter(private val context: Activity) :
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val item = Items[position]
         holder.tvObservationDate.text = Formater.GetDateTime(item.OfficialStart)
-        holder.tvObservationTitle.text = item.Scheme.name;
+        holder.tvObservationTitle.text = item.Scheme.toString()
         if (item.Synced) {
             holder.ibUpload.setImageResource(R.drawable.upload_icon_chackmark)
             holder.ibUpload.isEnabled = false
@@ -69,7 +69,7 @@ class MainAdapter(private val context: Activity) :
         thread {
             ObservationManager.getInstance(context).Delete(observation)
             observation.Synced = true
-            ObservationManager.getInstance(context).Save(observation)
+            ObservationManager.getInstance(context).Insert(observation)
             this.Items.clear()
             this.Items.addAll(ObservationManager.getInstance(context).LoadAll())
             context.runOnUiThread{

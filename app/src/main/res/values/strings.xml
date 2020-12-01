@@ -2,19 +2,13 @@
     <string name="strAppName">MeteorWatcher</string>
     <string name="strProfile">Profile</string>
     <string name="strSchemes">Schemes</string>
-    <string name="strSync">Sync</string>
-    <string name="strServerStatus">Server Status</string>
     <string name="strPlaceholder">placeholder</string>
     <string name="strFetch">Fetch Schemes</string>
-    <string name="strOnline">Online</string>
-    <string name="strOffline">Offline</string>
-    <string name="strNetworkStatus">Network satus:</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strNullData">NullData</string>
     <string name="strRefresh">Refresh</string>
     <string name="strOk">OK</string>
-    <string name="strCancel">Cancel</string>
     <string name="strQuit">Quit</string>
     <string name="strComment">Comment</string>
     <string name="strCyclePeriod">Cycle period</string>
@@ -32,5 +26,29 @@
     <string name="strNetworkError">Error in server connection!</string>
     <string name="strObservation">Observation</string>
     <string name="strTitleNewObservation">Start new observation</string>
+    <string name="strSuccess">Success!</string>
+    <string name="strLocationNotGranted">Location permission NOT granted.</string>
+    <string name="strDifferenceMessage">Difference between local time and official start time can not be greater than 30 minutes.</string>
+    <string name="strErrNoScheme">No scheme selected.</string>
+    <string name="strErrNoName">Please add your name.</string>
+    <string name="strCancel">Cancel</string>
+    <string name="strYes">Yes</string>
+    <string name="strObservationExitConfirmation">Are you sure you want to exit and terminate Observation?</string>
+    <string name="strCommentSaved">Comment saved</string>
+
+    <string name="strProfileName">Profile::Name</string>
+    <string name="strProfileAddress">Profile::Address</string>
+    <string name="strLocationLatitude">Location::Latitude</string>
+    <string name="strLocationLongitude">Location::Longitude</string>
+    <string name="strLocalTime">Time::Local</string>
+    <string name="strUtc">Time::UTC</string>
+
+    <string name="strOfficialStart">Official start (local time)</string>
+    <string name="strStart">Start</string>
+    <string name="strCycle_">Cycle: </string>
+    <string name="strTimestamp">Timestamp: </string>
+    <string name="strHmg_">HMG: </string>
+    <string name="strLm_">LM: </string>
+
 
 </resources>

@@ -77,7 +77,7 @@ class SchemesActivity() : AppCompatActivity(), NetworkManager.ISchemeListReceive
                 AppDatabase.getInstance(this).schemeDao().Insert(item)
             }
             runOnUiThread {
-                Toast.makeText( this, "Succes!",Toast.LENGTH_SHORT).show()
+                Toast.makeText( this, getString(R.string.strSuccess),Toast.LENGTH_SHORT).show()
                 adapter.Update(schemes)
             }
         }

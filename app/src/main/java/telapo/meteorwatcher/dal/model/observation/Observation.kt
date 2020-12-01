@@ -64,7 +64,7 @@ data class Observation(
     }
 
     companion object {
-        var DbId : Long? = null
+        var ActiveDbId : Long? = null
         var ActiveObservation : Observation? = null
         fun Activate(o : Observation) {
             ActiveObservation = o;

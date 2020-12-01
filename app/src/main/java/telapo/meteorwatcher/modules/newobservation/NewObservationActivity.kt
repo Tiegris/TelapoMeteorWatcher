@@ -73,7 +73,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
             if (profile.Name == "") {
                 Toast.makeText(
                     this,
-                    "Please add your name.",
+                    getString(R.string.strErrNoName),
                     Toast.LENGTH_LONG
                 ).show()
                 return
@@ -81,7 +81,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
             if (schemes!!.size == 0) {
                 Toast.makeText(
                     this,
-                    "No scheme selected.",
+                    getString(R.string.strErrNoScheme),
                     Toast.LENGTH_LONG
                 ).show()
                 return
@@ -104,7 +104,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
             )
         } else {
             Toast.makeText(this,
-                "Difference between local time and official start time can not be greater than 30 minutes.",
+                getString(R.string.strDifferenceMessage),
                 Toast.LENGTH_LONG).show()
             return
         }
@@ -207,7 +207,7 @@ class NewObservationActivity : AppCompatActivity(), ProfileFragment.IReceiver {
                 } else {
                     tvLocationLongitude.text = getText(R.string.strNullData)
                     tvLocationLatitude.text = getText(R.string.strNullData)
-                    Toast.makeText(this, "Location permission NOT granted.",
+                    Toast.makeText(this, getString(R.string.strLocationNotGranted),
                         Toast.LENGTH_SHORT).show()
                 }
             }
