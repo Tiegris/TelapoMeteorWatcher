@@ -14,7 +14,7 @@ import telapo.meteorwatcher.dal.model.scheme.Scheme
 import telapo.meteorwatcher.dal.network.NetworkManager
 import kotlin.concurrent.thread
 
-class SchemesActivity() : AppCompatActivity(), NetworkManager.ISchemeListReceiver {
+class SchemesActivity : AppCompatActivity(), NetworkManager.ISchemeListReceiver {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SchemesAdapter
 

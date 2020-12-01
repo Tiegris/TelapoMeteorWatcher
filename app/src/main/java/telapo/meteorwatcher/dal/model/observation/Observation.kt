@@ -71,7 +71,7 @@ data class Observation(
 
         for (cycle in Cycles) {
             for (i in 0..cycle.Swarms.size-1) {
-                results[i].Count += cycle.Swarms[i].Count;
+                results[i].Count += cycle.Swarms[i].Count
             }
         }
         return results
@@ -81,7 +81,7 @@ data class Observation(
         var ActiveDbId : Long? = null
         var ActiveObservation : Observation? = null
         fun Activate(o : Observation) {
-            ActiveObservation = o;
+            ActiveObservation = o
         }
     }
 }

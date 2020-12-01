@@ -64,7 +64,7 @@ class HmgFragment(val o: Context? = null, val receiver: HmgFragment.IPingable? =
             cycle = view.findViewById(R.id.tvCycleFromTo)
             hmg = view.findViewById(R.id.tbHmg)
             lm = view.findViewById(R.id.tbLm)
-            cycle?.setText(Observation.ActiveObservation?.GetCycleDuration())
+            cycle?.text = Observation.ActiveObservation?.GetCycleDuration()
 
             if(Observation.ActiveObservation?.CycleLives!!) {
                 hmg?.setText(Observation.ActiveObservation?.LatestCycle?.Hmg.toString())

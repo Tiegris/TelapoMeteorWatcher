@@ -18,7 +18,7 @@ object Profile {
         this.o = o
         if (!initialised) {
             load()
-            initialised = true;
+            initialised = true
         }
     }
 

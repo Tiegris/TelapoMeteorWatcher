@@ -33,14 +33,14 @@ class DiagramFragment(val observation: Observation) : AppCompatDialogFragment() 
             entries.add( BarEntry(k.toFloat(), i.Count.toFloat()))
             k++
         }
-        val dataSet = BarDataSet(entries, "Meteors")
+        val dataSet = BarDataSet(entries, getString(R.string.strMeteors))
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
 
         val data = BarData(dataSet)
 
-        chartMain.data = data;
+        chartMain.data = data
         chartMain.description.text=""
-        chartMain.invalidate();
+        chartMain.invalidate()
     }
 
 }

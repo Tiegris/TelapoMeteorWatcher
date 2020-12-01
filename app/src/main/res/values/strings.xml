@@ -5,9 +5,7 @@
     <string name="strPlaceholder">placeholder</string>
     <string name="strFetch">Fetch Schemes</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strNullData">NullData</string>
-    <string name="strRefresh">Refresh</string>
     <string name="strOk">OK</string>
     <string name="strQuit">Quit</string>
     <string name="strComment">Comment</string>
@@ -21,8 +19,6 @@
     <string name="strName">Name</string>
     <string name="strAddress">Address</string>
     <string name="strDeleteAll">Delete All</string>
-    <string name="strSynced">Synced</string>
-    <string name="strNotSynced">Not uploaded yet</string>
     <string name="strNetworkError">Error in server connection!</string>
     <string name="strObservation">Observation</string>
     <string name="strTitleNewObservation">Start new observation</string>
@@ -49,6 +45,7 @@
     <string name="strTimestamp">Timestamp:</string>
     <string name="strHmg_">HMG:</string>
     <string name="strLm_">LM:</string>
+    <string name="strMeteors">Meteors</string>
 
 
 </resources>

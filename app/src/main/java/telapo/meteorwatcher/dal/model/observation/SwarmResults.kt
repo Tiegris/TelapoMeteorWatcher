@@ -15,7 +15,7 @@ data class SwarmResults(
     var count_5: Int = 0,
 ) {
     val Count : Int get() {
-        return count_0+count_1+count_2+count_3+count_4+count_5+count_m1+count_m2+count_m3+count_m4+count_m5;
+        return count_0+count_1+count_2+count_3+count_4+count_5+count_m1+count_m2+count_m3+count_m4+count_m5
     }
     fun Add(mg: Int) {
         if (mg == 5) count_5++

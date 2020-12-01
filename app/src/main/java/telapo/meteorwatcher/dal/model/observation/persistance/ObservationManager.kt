@@ -37,7 +37,7 @@ class ObservationManager {
 
     fun Delete(observation: Observation) {
         val value = Gson().toJson(observation)
-        AppDatabase.getInstance(context!!).observationDao().DeleteItem(value);
+        AppDatabase.getInstance(context!!).observationDao().DeleteItem(value)
     }
 
     private var context: Context? = null

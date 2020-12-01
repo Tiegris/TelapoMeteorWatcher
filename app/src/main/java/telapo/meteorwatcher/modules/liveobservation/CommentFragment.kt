@@ -49,7 +49,7 @@ class CommentFragment(val o: ICommentable) : AppCompatDialogFragment() {
             val view: View = LayoutInflater.from(context).inflate(R.layout.fragment_comment, null)
             ts = view.findViewById(R.id.tvTimeStamp)
             comment = view.findViewById(R.id.tbComment)
-            ts?.setText(Formater.GetDateTime(Time.Utc))
+            ts?.text = Formater.GetDateTime(Time.Utc)
 
             return view
         }

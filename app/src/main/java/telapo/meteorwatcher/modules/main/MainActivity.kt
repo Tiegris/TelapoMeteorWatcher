@@ -45,14 +45,14 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         initRecyclerView()
         thread {
-            val result = ObservationManager.getInstance(this).LoadAll();
-            onDataLoaded(result);
+            val result = ObservationManager.getInstance(this).LoadAll()
+            onDataLoaded(result)
         }
     }
 
     private fun onDataLoaded(list : MutableList<Observation>) {
         runOnUiThread {
-            adapter.Update(list);
+            adapter.Update(list)
         }
     }
 
