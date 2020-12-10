@@ -28,13 +28,13 @@ class HmgFragment(val o: Context? = null, val receiver: IPingable? = null, val s
                     if (hmg!!.text.isNotEmpty() && lm!!.text.isNotEmpty()) {
                         if (Observation.ActiveObservation?.CycleLives!!) {
                             Observation.ActiveObservation?.LatestCycle?.Hmg =
-                                hmg?.text.toString().toInt()
+                                hmg?.text.toString().toDouble()
                             Observation.ActiveObservation?.LatestCycle?.Lm =
                                 lm?.text.toString().toInt()
                         }
                         else {
                             Observation.ActiveObservation?.NewCycle(
-                                hmg?.text.toString().toInt(),
+                                hmg?.text.toString().toDouble(),
                                 lm?.text.toString().toInt()
                             )
                             receiver?.Ping()

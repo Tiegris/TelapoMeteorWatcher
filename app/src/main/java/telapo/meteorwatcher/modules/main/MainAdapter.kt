@@ -76,13 +76,18 @@ class MainAdapter(private val context: AppCompatActivity) :
 
     override fun AcknowledgeSucces(observation: Observation) {
         thread {
-            ObservationManager.getInstance(context).Delete(observation)
-            observation.Synced = true
-            ObservationManager.getInstance(context).Insert(observation)
-            this.Items.clear()
-            this.Items.addAll(ObservationManager.getInstance(context).LoadAll())
-            context.runOnUiThread{
-                notifyDataSetChanged()
+            if (observation.Synced) {
+                observation.Synced = false
+                ObservationManager.getInstance(context).Delete(observation)
+                observation.Synced = true
+                ObservationManager.getInstance(context).Insert(observation)
+                this.Items.clear()
+                this.Items.addAll(ObservationManager.getInstance(context).LoadAll())
+                context.runOnUiThread {
+                    notifyDataSetChanged()
+                }
+            } else {
+                Toast.makeText( context, context.getString(R.string.strNetworkNotSyncing), Toast.LENGTH_SHORT).show()
             }
         }
 

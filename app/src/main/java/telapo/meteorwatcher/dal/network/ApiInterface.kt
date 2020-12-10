@@ -15,7 +15,7 @@ interface ApiInterface {
         @Query("limit") limit: Int = 4
     ) : Call<List<Scheme>>
 
-    @POST("/api/upload")
+    @POST("http://10.0.2.2:5083/api/upload")
     fun UploadObservation(
         @Body observation: Observation
     ) : Call<Observation>

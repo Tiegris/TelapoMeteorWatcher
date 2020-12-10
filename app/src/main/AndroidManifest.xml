@@ -11,7 +11,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/strAppName"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        >
 
         <activity
             android:name=".modules.schemes.SchemesActivity"

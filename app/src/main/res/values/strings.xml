@@ -46,6 +46,7 @@
     <string name="strHmg_">HMG:</string>
     <string name="strLm_">LM:</string>
     <string name="strMeteors">Meteors</string>
+    <string name="strNetworkNotSyncing">Server not syncing</string>
 
 
 </resources>

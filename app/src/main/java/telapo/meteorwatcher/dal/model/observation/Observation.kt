@@ -41,7 +41,7 @@ data class Observation(
         return "$from - $to"
     }
 
-    fun NewCycle(hmg : Int, lm: Int) {
+    fun NewCycle(hmg : Double, lm: Int) {
         val count = Cycles.size
         val list = mutableListOf<SwarmResults>()
         if (!Scheme.swarm1.equals("")) Scheme.swarm1?.let { SwarmResults(it) }?.let { list.add(it) }

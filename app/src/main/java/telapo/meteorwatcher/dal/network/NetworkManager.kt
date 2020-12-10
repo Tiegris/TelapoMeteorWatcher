@@ -9,9 +9,10 @@ import telapo.meteorwatcher.dal.model.observation.Observation
 import telapo.meteorwatcher.dal.model.scheme.Scheme
 
 object NetworkManager {
-    //private const val SERVICE_URL = "https://www.tigri.ddns.net"
-    private const val SERVICE_URL = "http://192.168.1.65:8090/"
+    //private const val SERVICE_URL = "https://www.tigri.ddns.net:62088"
+    //private const val SERVICE_URL = "http://192.168.1.65:8090/"
     //private const val SERVICE_URL = "http://81.182.80.56:8090/"
+    private const val SERVICE_URL = "http://10.0.2.2:5082/"
 
     private val api: ApiInterface
 
