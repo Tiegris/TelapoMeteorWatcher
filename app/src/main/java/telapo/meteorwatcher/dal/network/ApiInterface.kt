@@ -10,12 +10,12 @@ import telapo.meteorwatcher.dal.model.scheme.Scheme
 
 interface ApiInterface {
 
-    @GET("/api/schemes")
+    @GET("http://tigri.ddns.net/api/schemes")
     fun GetSchemes(
         @Query("limit") limit: Int = 4
     ) : Call<List<Scheme>>
 
-    @POST("http://10.0.2.2:5083/api/upload")
+    @POST("http://tigri.ddns.net/api/upload")
     fun UploadObservation(
         @Body observation: Observation
     ) : Call<Observation>
